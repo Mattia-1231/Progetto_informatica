@@ -26,3 +26,27 @@ while running:
     pygame.display.flip()
 
 pygame.quit()
+
+#mappa
+
+WHITE = (255, 255, 255)
+GRAY = (100, 100, 100)
+
+walls = [
+   pygame.Rect(400, 100, 400, 30),
+   pygame.Rect(250, 250, 30, 300),
+   pygame.Rect(1000, 200, 30, 350),
+   pygame.Rect(450, 550, 500, 30),
+]
+# AGGIUNGI NEL GAME LOOP
+
+pygame.draw.rect(
+   screen,
+   WHITE,
+   (40, 40, WIDTH - 80, HEIGHT - 80),
+   4
+)
+
+for wall in walls: 
+	pygame.draw.rect(screen, GRAY, wall)
+
