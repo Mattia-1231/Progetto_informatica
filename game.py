@@ -1,4 +1,4 @@
-
+#primo commit
 import pygame
 
 pygame.init()
@@ -27,26 +27,49 @@ while running:
 
 pygame.quit()
 
-#mappa
+#mappa secondo commit
 
 WHITE = (255, 255, 255)
 GRAY = (100, 100, 100)
 
 walls = [
-   pygame.Rect(400, 100, 400, 30),
-   pygame.Rect(250, 250, 30, 300),
-   pygame.Rect(1000, 200, 30, 350),
-   pygame.Rect(450, 550, 500, 30),
+    pygame.Rect(400, 100, 400, 30),
+    pygame.Rect(250, 250, 30, 300),
+    pygame.Rect(1000, 200, 30, 350),
+    pygame.Rect(450, 550, 500, 30),
 ]
-# AGGIUNGI NEL GAME LOOP
+
 
 pygame.draw.rect(
-   screen,
-   WHITE,
-   (40, 40, WIDTH - 80, HEIGHT - 80),
-   4
+    screen,
+    WHITE,
+    (40, 40, WIDTH - 80, HEIGHT - 80),
+    4
 )
 
 for wall in walls: 
 	pygame.draw.rect(screen, GRAY, wall)
+
+#COLORI TERZO COMMIT
+
+CYAN = (0, 255, 255)
+
+# PLAYER
+
+player = {
+   "x": WIDTH // 2,
+   "y": HEIGHT // 2,
+   "radius": 18,
+   "speed": 5,
+   "hp": 100,
+   "angle": 0
+}
+# AGGIUNGI NEL DRAW
+
+pygame.draw.circle(
+   screen,
+   CYAN,
+   (int(player["x"]), int(player["y"])),
+   player["radius"]
+)
 
