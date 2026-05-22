@@ -72,4 +72,42 @@ pygame.draw.circle(
    (int(player["x"]), int(player["y"])),
    player["radius"]
 )
+# AGGIUNGI IMPORT
+
+import math
+# AGGIUNGI NEL LOOP
+
+keys = pygame.key.get_pressed()
+
+if keys[pygame.K_a]:
+   player["angle"] += 4
+
+if keys[pygame.K_d]:
+   player["angle"] -= 4
+
+rad = math.radians(player["angle"])
+
+if keys[pygame.K_w]:
+
+   player["x"] += math.cos(rad) * player["speed"]
+   player["y"] += math.sin(rad) * player["speed"]
+
+if keys[pygame.K_s]:
+
+   player["x"] -= math.cos(rad) * player["speed"]
+   player["y"] -= math.sin(rad) * player["speed"]
+# AGGIUNGI NEL DRAW
+
+end_x = player["x"] + math.cos(rad) * 35
+end_y = player["y"] + math.sin(rad) * 35
+
+pygame.draw.line(
+   screen,
+   WHITE,
+   (player["x"], player["y"]),
+   (end_x, end_y),
+   4
+)
+
+
 
