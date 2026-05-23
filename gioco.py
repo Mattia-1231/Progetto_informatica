@@ -460,3 +460,31 @@ while running:
             (int(b["x"]), int(b["y"])),
             4
         )
+  # ENEMIES
+    for e in enemies:
+
+        pygame.draw.circle(
+            screen,
+            e["color"],
+            (int(e["x"]), int(e["y"])),
+            e["radius"]
+        )
+
+    # PARTICLES
+    for p in particles:
+
+        pygame.draw.circle(
+            screen,
+            p["color"],
+            (int(p["x"]), int(p["y"])),
+            2
+        )
+
+    # HP BAR
+    pygame.draw.rect(screen, RED, (20, 20, 300, 25))
+
+    hp_width = 300 * (player["hp"] / player["max_hp"])
+
+    pygame.draw.rect(screen, GREEN, (20, 20, hp_width, 25))
+
+    pygame.draw.rect(screen, WHITE, (20, 20, 300, 25), 2)
