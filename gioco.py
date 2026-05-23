@@ -247,3 +247,55 @@ while running:
 
             if event.key == pygame.K_LSHIFT:
                 dash()
+  # =====================================================
+    # INPUT
+    # =====================================================
+
+    keys = pygame.key.get_pressed()
+
+    if keys[pygame.K_a]:
+        player["angle"] += 4
+
+    if keys[pygame.K_d]:
+        player["angle"] -= 4
+
+    speed = player["speed"]
+
+    if player["dash"] > 0:
+        speed = 12
+        player["dash"] -= 1
+
+    rad = math.radians(player["angle"])
+
+    move_x = 0
+    move_y = 0
+
+    if keys[pygame.K_w]:
+
+        move_x += math.cos(rad) * speed
+        move_y += math.sin(rad) * speed
+
+    if keys[pygame.K_s]:
+
+        move_x -= math.cos(rad) * speed
+        move_y -= math.sin(rad) * speed
+
+    nx = player["x"] + move_x
+    ny = player["y"] + move_y
+
+    if not wall_collision(nx, player["y"], player["radius"]):
+        player["x"] = nx
+
+    if not wall_collision(player["x"], ny, player["radius"]):
+        player["y"] = ny
+
+    # =====================================================
+    # SPAWN
+    # =====================================================
+
+    spawn_timer += 1
+
+    if spawn_timer > 30:
+
+        spawn_enemy()
+        spawn_timer = 0
