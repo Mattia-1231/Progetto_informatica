@@ -324,3 +324,65 @@ while running:
                 player["max_hp"],
                 player["hp"] + 1
             )
+ # =====================================================
+    # ENEMIES
+    # =====================================================
+
+    for e in enemies[:]:
+
+        if not freeze_active:
+
+            dx = player["x"] - e["x"]
+            dy = player["y"] - e["y"]
+
+            d = math.hypot(dx, dy)
+
+            if d > 0:
+
+                nx = e["x"] + dx / d * e["speed"]
+                ny = e["y"] + dy / d * e["speed"]
+
+                if not wall_collision(nx, ny, e["radius"]):
+
+                    e["x"] = nx
+                    e["y"] = ny
+
+        if dist(player["x"], player["y"], e["x"], e["y"]) < (
+            player["radius"] + e["radius"]
+        ):
+
+            player["hp"] -= 0.2
+
+    # =====================================================
+    # BULLETS
+    # =====================================================
+
+    for b in bullets[:]:
+
+        b["x"] += b["dx"]
+        b["y"] += b["dy"]
+        b["life"] -= 1
+
+        if b["life"] <= 0:
+
+            bullets.remove(b)
+            continue
+
+        if wall_collision(b["x"], b["y"], 4):
+
+            create_particles(b["x"], b["y"], WHITE)
+            bullets.remove(b)
+            continue
+
+        for e in enemies[:]:
+
+            if dist(b["x"], b["y"], e["x"], e["y"]) < e["radius"]:
+
+                e["hp"] -= b["damage"]
+
+                create_particles(e["x"], e["y"], e["color"])
+
+                if b in bullets:
+                    bullets.remove(b)
+
+                break
