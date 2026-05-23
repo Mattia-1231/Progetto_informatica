@@ -205,3 +205,45 @@ def heal():
 def dash():
 
     player["dash"] = 10
+# =========================================================
+# LOOP
+# =========================================================
+
+running = True
+spawn_timer = 0
+
+while running:
+
+    dt = clock.tick(60)
+
+    # =====================================================
+    # EVENTI
+    # =====================================================
+
+    for event in pygame.event.get():
+
+        if event.type == pygame.QUIT:
+            running = False
+
+        if event.type == pygame.KEYDOWN:
+
+            if event.key == pygame.K_ESCAPE:
+                running = False
+
+            if event.key == pygame.K_z:
+                shoot()
+
+            if event.key == pygame.K_SPACE:
+                melee_attack()
+
+            if event.key == pygame.K_q:
+                strong_attack()
+
+            if event.key == pygame.K_f:
+                freeze()
+
+            if event.key == pygame.K_e:
+                heal()
+
+            if event.key == pygame.K_LSHIFT:
+                dash()
