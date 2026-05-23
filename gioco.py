@@ -299,3 +299,28 @@ while running:
 
         spawn_enemy()
         spawn_timer = 0
+ # =====================================================
+    # FREEZE
+    # =====================================================
+
+    freeze_active = False
+
+    if player["freeze"] > 0:
+
+        player["freeze"] -= 1
+        freeze_active = True
+
+    # =====================================================
+    # HEAL
+    # =====================================================
+
+    if player["healing"] > 0:
+
+        player["healing"] -= 1
+
+        if player["healing"] % 5 == 0:
+
+            player["hp"] = min(
+                player["max_hp"],
+                player["hp"] + 1
+            )
