@@ -488,3 +488,45 @@ while running:
     pygame.draw.rect(screen, GREEN, (20, 20, hp_width, 25))
 
     pygame.draw.rect(screen, WHITE, (20, 20, 300, 25), 2)
+  # HUD
+    hud = font.render(
+        f"HP: {int(player['hp'])}    "
+        f"Enemies: {len(enemies)}    "
+        f"Score: {player['score']}",
+        True,
+        WHITE
+    )
+
+    screen.blit(hud, (20, 60))
+
+    # ABILITA'
+    skills = font.render(
+        "Z Shoot | SPACE Slash | Q Power | F Freeze | E Heal | SHIFT Dash",
+        True,
+        CYAN
+    )
+
+    screen.blit(skills, (20, HEIGHT - 40))
+
+    # GAME OVER
+    if player["hp"] <= 0:
+
+        over = big_font.render("GAME OVER", True, RED)
+        score = font.render(
+            f"Final Score: {player['score']}",
+            True,
+            WHITE
+        )
+
+        screen.blit(over, (WIDTH // 2 - 220, HEIGHT // 2 - 50))
+        screen.blit(score, (WIDTH // 2 - 90, HEIGHT // 2 + 30))
+
+        pygame.display.flip()
+
+        pygame.time.delay(5000)
+
+        running = False
+
+    pygame.display.flip()
+
+pygame.quit()
