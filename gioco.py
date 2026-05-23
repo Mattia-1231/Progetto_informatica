@@ -63,3 +63,32 @@ player = {
     "dash": 0,
     "score": 0
 }
+# =========================================================
+# ENTITA'
+# =========================================================
+
+enemies = []
+bullets = []
+particles = []
+
+# =========================================================
+# FUNZIONI
+# =========================================================
+
+def dist(x1, y1, x2, y2):
+    return math.hypot(x2 - x1, y2 - y1)
+
+def wall_collision(x, y, radius=15):
+
+    rect = pygame.Rect(
+        x - radius,
+        y - radius,
+        radius * 2,
+        radius * 2
+    )
+
+    for wall in walls:
+        if rect.colliderect(wall):
+            return True
+
+    return False
