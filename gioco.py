@@ -155,3 +155,53 @@ def spawn_enemy():
         "radius": radius,
         "color": color
     })
+# =========================================================
+# SHOOT
+# =========================================================
+
+def shoot():
+
+    rad = math.radians(player["angle"])
+
+    bullets.append({
+        "x": player["x"],
+        "y": player["y"],
+        "dx": math.cos(rad) * 15,
+        "dy": math.sin(rad) * 15,
+        "damage": 20,
+        "life": 60
+    })
+
+# =========================================================
+# ABILITA'
+# =========================================================
+
+def melee_attack():
+
+    for e in enemies:
+
+        if dist(player["x"], player["y"], e["x"], e["y"]) < 80:
+
+            e["hp"] -= 25
+            create_particles(e["x"], e["y"], WHITE)
+
+def strong_attack():
+
+    for e in enemies:
+
+        if dist(player["x"], player["y"], e["x"], e["y"]) < 140:
+
+            e["hp"] -= 50
+            create_particles(e["x"], e["y"], ORANGE)
+
+def freeze():
+
+    player["freeze"] = 240
+
+def heal():
+
+    player["healing"] = 300
+
+def dash():
+
+    player["dash"] = 10
