@@ -413,3 +413,29 @@ while running:
 
         if p["life"] <= 0:
             particles.remove(p)
+  # =====================================================
+    # DRAW
+    # =====================================================
+
+    screen.fill(BLACK)
+
+    # MAPPA
+    pygame.draw.rect(screen, DARK, (40, 40, WIDTH - 80, HEIGHT - 80))
+
+    pygame.draw.rect(
+        screen,
+        WHITE,
+        (40, 40, WIDTH - 80, HEIGHT - 80),
+        4
+    )
+
+    for wall in walls:
+        pygame.draw.rect(screen, GRAY, wall)
+
+    # PLAYER
+    pygame.draw.circle(
+        screen,
+        CYAN,
+        (int(player["x"]), int(player["y"])),
+        player["radius"]
+    )
