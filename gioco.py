@@ -439,3 +439,24 @@ while running:
         (int(player["x"]), int(player["y"])),
         player["radius"]
     )
+  # DIREZIONE
+    end_x = player["x"] + math.cos(rad) * 35
+    end_y = player["y"] + math.sin(rad) * 35
+
+    pygame.draw.line(
+        screen,
+        WHITE,
+        (player["x"], player["y"]),
+        (end_x, end_y),
+        4
+    )
+
+    # BULLETS
+    for b in bullets:
+
+        pygame.draw.circle(
+            screen,
+            WHITE,
+            (int(b["x"]), int(b["y"])),
+            4
+        )
