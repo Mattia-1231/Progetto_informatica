@@ -386,3 +386,30 @@ while running:
                     bullets.remove(b)
 
                 break
+  # =====================================================
+    # MORTE NEMICI
+    # =====================================================
+
+    for e in enemies[:]:
+
+        if e["hp"] <= 0:
+
+            create_particles(e["x"], e["y"], e["color"])
+
+            player["score"] += 1
+
+            enemies.remove(e)
+
+    # =====================================================
+    # PARTICLES
+    # =====================================================
+
+    for p in particles[:]:
+
+        p["x"] += p["dx"]
+        p["y"] += p["dy"]
+
+        p["life"] -= 1
+
+        if p["life"] <= 0:
+            particles.remove(p)
