@@ -92,3 +92,66 @@ def wall_collision(x, y, radius=15):
             return True
 
     return False
+# =========================================================
+# PARTICELLE
+# =========================================================
+
+def create_particles(x, y, color):
+
+    for _ in range(10):
+
+        particles.append({
+            "x": x,
+            "y": y,
+            "dx": random.uniform(-3, 3),
+            "dy": random.uniform(-3, 3),
+            "life": 25,
+            "color": color
+        })
+
+# =========================================================
+# ENEMY SPAWN
+# =========================================================
+
+def spawn_enemy():
+
+    while True:
+
+        x = random.randint(50, WIDTH - 50)
+        y = random.randint(50, HEIGHT - 50)
+
+        if dist(x, y, player["x"], player["y"]) > 250:
+            if not wall_collision(x, y):
+                break
+
+    enemy_type = random.choice(["normal", "fast", "tank"])
+
+    if enemy_type == "normal":
+
+        hp = 40
+        speed = 2
+        radius = 14
+        color = RED
+
+    elif enemy_type == "fast":
+
+        hp = 20
+        speed = 4
+        radius = 10
+        color = YELLOW
+
+    else:
+
+        hp = 100
+        speed = 1
+        radius = 22
+        color = ORANGE
+
+    enemies.append({
+        "x": x,
+        "y": y,
+        "hp": hp,
+        "speed": speed,
+        "radius": radius,
+        "color": color
+    })
